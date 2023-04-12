@@ -12,7 +12,7 @@ public class ListViewActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
-    List<StudentModel> list;
+    List<StudentModel> studentList = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +22,11 @@ public class ListViewActivity extends AppCompatActivity {
         recyclerView = findViewById(R.id.Recycler);
 
 
-        list = (List<StudentModel>) getIntent().getSerializableExtra("list");
+        StudentModel studentModel = (StudentModel) getIntent().getSerializableExtra("model");
 
-        recyclerAdapter  = new RecyclerAdapter(this,list);
+        studentList.add(studentModel);
+
+        recyclerAdapter  = new RecyclerAdapter(this,studentList);
 
         recyclerView.setAdapter(recyclerAdapter);
 

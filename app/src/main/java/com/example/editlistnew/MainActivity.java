@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-    List<StudentModel> studentList = new ArrayList<>();
+
 
     EditText myName, fatherName, motherName, idNo;
     Button btn;
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getFormData();
-                goToListActivitiy();
+                StudentModel model = getFormData();
+                goToListActivitiy(model);
             }
         });
 
@@ -42,20 +42,24 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    private StudentModel getFormData() {
 
-    private void getFormData() {
 
-
-        StudentModel studentModel = new StudentModel(myName.getText().toString(), fatherName.getText().toString(), motherName.getText().toString(), idNo.getText().toString());
-        studentList.add(studentModel);
-
+        StudentModel studentModel = new StudentModel(
+                myName.getText().toString(),
+                fatherName.getText().toString(),
+                motherName.getText().toString(),
+                idNo.getText().toString());
+        return studentModel;
     }
-    private void goToListActivitiy() {
-     Intent intent= new Intent(this,ListViewActivity.class);
 
-//     intent.putExtra("list",(Serializable) studentList);
+    private void goToListActivitiy(StudentModel model) {
+        Intent intent = new Intent(this, ListViewActivity.class);
 
-     startActivity(intent);
+
+        intent.putExtra("model", model);
+
+        startActivity(intent);
 
     }
 }

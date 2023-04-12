@@ -1,6 +1,8 @@
 package com.example.editlistnew;
 
-public class StudentModel {
+import java.io.Serializable;
+
+public class StudentModel implements Serializable {
 
     String name;
     String Fname;
